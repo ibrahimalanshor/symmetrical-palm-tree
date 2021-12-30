@@ -1,82 +1,63 @@
 const plugin = require('tailwindcss/plugin')
 
-module.exports = plugin(function ({ addUtilities }) {
-  const fontSizes = {
-    sm: {
-      size: '1rem',
-      height: '1.5rem'
-    },
-    base: {
-      size: '1.125rem',
-      height: '1.75rem'
-    },
-    md: {
-      size: '1.25rem',
-      height: '1.75rem'
-    },
-    lg: {
-      size: '1.5rem',
-      height: '2rem'
-    },
-    xl: {
-      size: '1.875rem',
-      height: '2.25rem'
-    },
-    xxl: {
-      size: '2.25rem',
-      height: '2.5rem'
-    }
-  }
+const { fontWeight, fontSize, lineHeight } = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
-  const titleSize = {
+module.exports = plugin(function ({ addUtilities }) {
+  const titleSizes = {
     md: {
-      key: 'md',
+      title: 'xl',
       subtitle: 'base'
     },
     lg: {
-      key: 'md',
-      subtitle: 'base'
+      title: '2xl',
+      subtitle: 'lg'
     },
     xl: {
-      key: 'md',
-      subtitle: 'md'
+      title: '3xl',
+      subtitle: 'lg'
     },
     xxl: {
-      key: 'md',
-      subtitle: 'lg'
+      title: '4xl',
+      subtitle: 'xl'
     }
   }
 
   const titles = [
     {
       '.title': {
-        fontSize: fontSizes.base.size,
-        fontWeight: 'bold',
-        lineHeight: fontSizes.base.height,
+        fontSize: fontSize['lg'][0],
+        fontWeight: fontWeight.bold,
+        lineHeight: fontSize['lg'][1].lineHeight
       },
       '.subtitle': {
-        fontSize: fontSizes.sm.size,
-        lineHeight: fontSizes.sm.height,
+        fontSize: fontSize['base'][0],
+        lineHeight: lineHeight.loose,
       },
     },
-    ...Object.entries(titleSize).map(([key, { subtitle }]) => {
-      return {
-        [`.title.title-${key}`]: {
-          fontSize: fontSizes[key].size,
-          lineHeight: fontSizes[key].height,
-        },
-        [`.subtitle.subtitle-${key}`]: {
-          fontSize: fontSizes[subtitle].size,
-          lineHeight: fontSizes[subtitle].height,
-        }
+    ...Object.entries(titleSizes).map(([key, { title, subtitle }]) => ({
+      [`.title.title-${key}`]: {
+        fontSize: fontSize[title][0],
+        lineHeight: fontSize[title][1].lineHeight
+      },
+      [`.subtitle.subtitle-${key}`]: {
+        fontSize: fontSize[subtitle][0],
       }
-    })
+    }))
   ]
 
-  addUtilities(titles)
-  addUtilities({
+  const paragraph = {
     '.paragraph': {
-      lineHeight: 2
+      lineHeight: lineHeight.loose
     }
-  })
+  }
+
+  const small = {
+    '.small': {
+      fontSize: fontSize.sm[0],
+      lineHeight: fontSize.sm[1].lineHeight
+    }
+  }
+
+  addUtilities([...titles, paragraph, small])
 })

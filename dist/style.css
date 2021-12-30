@@ -425,13 +425,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .title {
   font-size: 1.125rem;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 1.75rem;
 }
 
 .subtitle {
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 2;
 }
 
 .title.title-md {
@@ -440,8 +440,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .subtitle.subtitle-md {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
 }
 
 .title.title-lg {
@@ -451,7 +450,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .subtitle.subtitle-lg {
   font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .title.title-xl {
@@ -460,8 +458,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .subtitle.subtitle-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1.125rem;
 }
 
 .title.title-xxl {
@@ -470,10 +467,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .subtitle.subtitle-xxl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
 }
 
 .paragraph {
   line-height: 2;
+}
+
+.small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
