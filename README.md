@@ -1,11 +1,11 @@
-# Symetrical Palm Tree
+# Symmetrical Palm Tree
 
 For Tailwind
 
 ### Install
 
 ```bash
-npm install symetrical-palm-tree
+npm install symmetrical-palm-tree
 ```
 
 ### Usage
@@ -25,7 +25,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('symetrical-palm-tree')
+    require('symmetrical-palm-tree')
   ]
 }
 ```
