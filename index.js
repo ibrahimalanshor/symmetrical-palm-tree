@@ -1,25 +1,41 @@
 const plugin = require('tailwindcss/plugin')
 
-const { fontWeight, fontSize, lineHeight } = require('tailwindcss/defaultTheme')
+const { fontWeight, fontSize, lineHeight, screens } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = plugin(function ({ addUtilities }) {
   const titleSizes = {
     md: {
-      title: 'xl',
-      subtitle: 'base'
+      title: 'lg',
+      subtitle: 'base',
+      sm: {
+        title: 'xl',
+        subtitle: 'base'
+      }
     },
     lg: {
-      title: '2xl',
-      subtitle: 'lg'
+      title: 'xl',
+      subtitle: 'base',
+      sm: {
+        title: '2xl',
+        subtitle: 'lg'
+      }
     },
     xl: {
-      title: '3xl',
-      subtitle: 'lg'
+      title: '2xl',
+      subtitle: 'lg',
+      sm: {
+        title: '3xl',
+        subtitle: 'lg'
+      }
     },
     xxl: {
-      title: '4xl',
-      subtitle: 'xl'
+      title: '3xl',
+      subtitle: 'lg',
+      sm: {
+        title: '4xl',
+        subtitle: 'xl'
+      }
     }
   }
 
@@ -35,13 +51,22 @@ module.exports = plugin(function ({ addUtilities }) {
         lineHeight: lineHeight.loose,
       },
     },
-    ...Object.entries(titleSizes).map(([key, { title, subtitle }]) => ({
+    ...Object.entries(titleSizes).map(([key, { title, subtitle, sm }]) => ({
       [`.title.title-${key}`]: {
         fontSize: fontSize[title][0],
-        lineHeight: fontSize[title][1].lineHeight
+        lineHeight: fontSize[title][1].lineHeight,
       },
       [`.subtitle.subtitle-${key}`]: {
         fontSize: fontSize[subtitle][0],
+      },
+      [`@media(min-width: ${screens.sm})`]: {
+        [`.title.title-${key}`]: {
+          fontSize: fontSize[sm.title][0],
+          lineHeight: fontSize[sm.title][1].lineHeight,
+        },
+        [`.subtitle.subtitle-${key}`]: {
+          fontSize: fontSize[sm.subtitle][0],
+        }
       }
     }))
   ]
